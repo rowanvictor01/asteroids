@@ -1,9 +1,20 @@
-package asteroids
+package src
 
-import "core:fmt"
+import "vendor:raylib"
+
+import "config"
 
 
 main :: proc()
 {
-    fmt.println("Hello, World!")
+    raylib.InitWindow(config.WINDOW_WIDTH, config.WINDOW_HEIGHT, config.WINDOW_TITLE)
+
+    for !raylib.WindowShouldClose()
+    {
+	raylib.BeginDrawing()
+	raylib.ClearBackground(config.WINDOW_BG_COLOR)
+	raylib.EndDrawing()
+    }
+    
+    raylib.CloseWindow()
 }
