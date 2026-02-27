@@ -9,6 +9,7 @@ Bullet :: struct
     y: f32,
     radius: f32,
     color: raylib.Color,
+    vel_y: f32,
 }
 
 
@@ -22,6 +23,11 @@ bullet_create :: proc(x: f32, y: f32, radius: f32, color: raylib.Color) -> Bulle
 	color = color,
     }
     return b
+}
+
+bullet_update :: proc(self: ^Bullet)
+{
+    self.y = self.y - self.vel_y * raylib.GetFrameTime()
 }
 
 bullet_draw :: proc(self: ^Bullet)
