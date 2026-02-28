@@ -16,6 +16,9 @@ PLAYER_COLOR :: raylib.WHITE
 
 PLAYER_VX: f32: 550
 
+PLAYER_ATTACK_PER_SEC: f32 : 0.37
+player_attack_time_accumulator: f32 = 0.37
+
 
 player_rect: raylib.Rectangle =
 {
@@ -29,4 +32,9 @@ player_rect: raylib.Rectangle =
 get_rect_center_x :: proc(rect: raylib.Rectangle) -> f32
 {
     return rect.x + (rect.width / 2)
+}
+
+get_rect_front_y :: proc(rect: raylib.Rectangle, r: f32) -> f32
+{
+    return rect.y - r
 }
