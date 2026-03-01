@@ -27,14 +27,3 @@ player_rect: raylib.Rectangle =
     width = PLAYER_WIDTH,
     height = PLAYER_HEIGHT,
 }
-
-
-get_rect_center_x :: proc(rect: raylib.Rectangle) -> f32
-{
-    return rect.x + (rect.width / 2)
-}
-
-get_rect_front_y :: proc(rect: raylib.Rectangle, r: f32) -> f32
-{
-    return rect.y - r
-}

@@ -4,12 +4,14 @@ import "vendor:raylib"
 
 import "config"
 import "entities"
+import "collisions"
 
 
 main :: proc()
 {
     // Create Window
     raylib.InitWindow(config.WINDOW_WIDTH, config.WINDOW_HEIGHT, config.WINDOW_TITLE)
+    raylib.SetTargetFPS(60)
     
     // Create Player's Ship
     ship := entities.ship_create(config.player_rect, config.PLAYER_VX, config.PLAYER_COLOR)
@@ -20,6 +22,9 @@ main :: proc()
 	    // Update
 	    entities.ship_update(&ship)
 	    entities.bullets_update(ship.bullets[:])
+        
+        // Collision Detection
+        collisions.collision_bullets_borders(ship.bullets[:])
 
 	    // Render
 	    raylib.BeginDrawing()

@@ -47,3 +47,28 @@ bullets_draw :: proc(bullets: []Bullet)
         raylib.DrawCircle(i32(bullets[i].x), i32(bullets[i].y), bullets[i].radius, bullets[i].color)
     }
 }
+
+
+// Helper Proc
+get_bullet_bound_left :: proc(bullet: Bullet) -> f32
+{
+    return bullet.x - bullet.radius
+}
+
+// Helper Proc
+get_bullet_bound_right :: proc(bullet: Bullet) -> f32
+{
+    return bullet.x + bullet.radius
+}
+
+// Helper Proc
+get_bullet_bound_top :: proc(bullet: Bullet) -> f32
+{
+    return bullet.y - bullet.radius
+}
+
+// Helper Proc
+get_bullet_bound_bottom :: proc(bullet: Bullet) -> f32
+{
+    return bullet.y + bullet.radius
+}
