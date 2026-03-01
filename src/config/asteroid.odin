@@ -1,0 +1,12 @@
+package config
+
+import "vendor:raylib"
+
+
+ASTEROID_RADIUS: f32 : 65
+ASTEROID_COLOR :: raylib.WHITE
+
+ASTEROID_X: f32 : 40
+ASTEROID_Y: f32 : 0 - ASTEROID_RADIUS
+
+ASTEROID_SPEED: f32 : 650

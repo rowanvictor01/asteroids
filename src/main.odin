@@ -15,6 +15,9 @@ main :: proc()
     
     // Create Player's Ship
     ship := entities.ship_create(config.player_rect, config.PLAYER_VX, config.PLAYER_COLOR)
+    
+    // Create Asteroid
+    asteroid := entities.asteroid_create(config.ASTEROID_X, config.ASTEROID_Y, config.ASTEROID_RADIUS, config.ASTEROID_COLOR, config.ASTEROID_SPEED)
 
     // Game Loop
     for !raylib.WindowShouldClose()
@@ -33,6 +36,7 @@ main :: proc()
 	
 	    entities.ship_draw(&ship)
 	    entities.bullets_draw(ship.bullets[:])
+        entities.asteroid_draw(&asteroid)
 
 	    raylib.EndDrawing()
     }
