@@ -22,7 +22,7 @@ load_bullets :: proc(ship: ^Ship) -> [config.BULLETS_AMOUNT]Bullet
 
     for i in 0 ..< len(bullets)
     {
-        b := bullet_create(get_rect_center_x(ship.rect), get_rect_front_y(ship.rect, config.BULLET_RADIUS), config.BULLET_SPEED, config.BULLET_RADIUS, config.BULLET_COLOR)
+        b := bullet_create(get_ship_center_x(ship.rect), get_ship_front_y(ship.rect, config.BULLET_RADIUS), config.BULLET_SPEED, config.BULLET_RADIUS, config.BULLET_COLOR)
         bullets[i] = b
     }
     
@@ -46,8 +46,8 @@ shoot_bullet :: proc(ship: ^Ship)
         if !ship.bullets[i].is_active
         {
             ship.bullets[i].is_active = true
-            ship.bullets[i].x = get_rect_center_x(ship.rect)
-            ship.bullets[i].y = get_rect_front_y(ship.rect, ship.bullets[i].radius)
+            ship.bullets[i].x = get_ship_center_x(ship.rect)
+            ship.bullets[i].y = get_ship_front_y(ship.rect, ship.bullets[i].radius)
             config.player_attack_time_accumulator = 0
             return
         }
@@ -91,13 +91,13 @@ ship_update :: proc(ship: ^Ship)
 
 
 // Helper Procedure
-get_rect_center_x :: proc(rect: raylib.Rectangle) -> f32
+get_ship_center_x :: proc(rect: raylib.Rectangle) -> f32
 {
     return rect.x + (rect.width / 2)
 }
 
 // Helper Procedure
-get_rect_front_y :: proc(rect: raylib.Rectangle, r: f32) -> f32
+get_ship_front_y :: proc(rect: raylib.Rectangle, r: f32) -> f32
 {
     return rect.y - r
 }
