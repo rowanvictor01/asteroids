@@ -30,6 +30,7 @@ main :: proc()
         // Collision Detection
         collisions.collision_bullets_borders(ship.bullets[:])
         collisions.collision_ship_borders(&ship)
+        collisions.collision_asteroid_borders(&asteroid)
 
 	    // Render
 	    raylib.BeginDrawing()

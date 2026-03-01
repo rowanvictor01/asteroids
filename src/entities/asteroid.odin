@@ -1,6 +1,8 @@
 package entities
 
 import "vendor:raylib"
+import "core:math/rand"
+import "../config"
 
 
 Asteroid :: struct
@@ -39,4 +41,19 @@ asteroid_update :: proc(asteroid: ^Asteroid)
     if asteroid.is_destroyed {return}
     
     asteroid.y = asteroid.y + asteroid.vel_y * raylib.GetFrameTime()
+}
+
+
+/*
+   HELPER PROCEDURES
+*/
+
+get_asteroid_bounds_top :: proc(asteroid: ^Asteroid) -> f32
+{
+    return asteroid.y - asteroid.radius
+}
+
+generate_rand_x :: proc() -> f32
+{
+    return rand.float32_range(config.ASTEROID_X, config.BORDER_RIGHT - config.ASTEROID_RADIUS)
 }
