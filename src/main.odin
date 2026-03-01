@@ -25,6 +25,7 @@ main :: proc()
 	    // Update
 	    entities.ship_update(&ship)
 	    entities.bullets_update(ship.bullets[:])
+        entities.asteroid_update(&asteroid)
         
         // Collision Detection
         collisions.collision_bullets_borders(ship.bullets[:])
