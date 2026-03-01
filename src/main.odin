@@ -25,6 +25,7 @@ main :: proc()
         
         // Collision Detection
         collisions.collision_bullets_borders(ship.bullets[:])
+        collisions.collision_ship_borders(&ship)
 
 	    // Render
 	    raylib.BeginDrawing()

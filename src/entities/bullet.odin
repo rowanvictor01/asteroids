@@ -50,25 +50,25 @@ bullets_draw :: proc(bullets: []Bullet)
 
 
 // Helper Proc
-get_bullet_bound_left :: proc(bullet: Bullet) -> f32
+get_bullet_bounds_left :: proc(bullet: Bullet) -> f32
 {
     return bullet.x - bullet.radius
 }
 
 // Helper Proc
-get_bullet_bound_right :: proc(bullet: Bullet) -> f32
+get_bullet_bounds_right :: proc(bullet: Bullet) -> f32
 {
     return bullet.x + bullet.radius
 }
 
 // Helper Proc
-get_bullet_bound_top :: proc(bullet: Bullet) -> f32
+get_bullet_bounds_top :: proc(bullet: Bullet) -> f32
 {
     return bullet.y - bullet.radius
 }
 
 // Helper Proc
-get_bullet_bound_bottom :: proc(bullet: Bullet) -> f32
+get_bullet_bounds_bottom :: proc(bullet: Bullet) -> f32
 {
     return bullet.y + bullet.radius
 }
