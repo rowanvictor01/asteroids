@@ -25,11 +25,10 @@ collision_ship_borders :: proc(ship: ^entities.Ship)
     }
 }
 
-collision_asteroid_borders :: proc(asteroid: ^entities.Asteroid)
+collision_asteroids_borders :: proc(horde: []entities.Asteroid)
 {
-    if entities.get_asteroid_bounds_top(asteroid) >= config.BORDER_BOTTOM
+    for i in 0 ..< len(horde)
     {
-        asteroid.x = entities.generate_rand_x()
-        asteroid.y = config.ASTEROID_Y
     }
+
 }

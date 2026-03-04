@@ -2,6 +2,7 @@ package entities
 
 import "vendor:raylib"
 import "core:math/rand"
+
 import "../config"
 
 
@@ -30,17 +31,34 @@ asteroid_create :: proc(x: f32, y: f32, radius: f32, color: raylib.Color, vy: f3
     return a
 }
 
-asteroid_draw :: proc(asteroid: ^Asteroid)
+horde_create :: proc() -> [config.HORDE_SIZE]Asteroid
 {
-    if asteroid.is_destroyed {return}
-    raylib.DrawCircle(i32(asteroid.x), i32(asteroid.y), asteroid.radius, asteroid.color)
+    horde: [config.HORDE_SIZE]Asteroid
+
+    for i in 0 ..< config.HORDE_SIZE
+    {
+        horde[i] = asteroid_create(generate_rand_x(), generate_rand_y(), config.ASTEROID_RADIUS, config.ASTEROID_COLOR, config.ASTEROID_SPEED)
+    }
+    
+    return horde
 }
 
-asteroid_update :: proc(asteroid: ^Asteroid)
+asteroids_draw :: proc(horde: []Asteroid)
 {
-    if asteroid.is_destroyed {return}
-    
-    asteroid.y = asteroid.y + asteroid.vel_y * raylib.GetFrameTime()
+    for &asteroid in horde
+    {
+        if asteroid.is_destroyed {continue}
+        raylib.DrawCircle(i32(asteroid.x), i32(asteroid.y), asteroid.radius, asteroid.color)
+    }
+}
+
+asteroids_update :: proc(horde: []Asteroid)
+{
+    for &asteroid in horde
+    {
+        if asteroid.is_destroyed {continue}
+        asteroid.y = asteroid.y + asteroid.vel_y * raylib.GetFrameTime()
+    }
 }
 
 
@@ -53,7 +71,17 @@ get_asteroid_bounds_top :: proc(asteroid: ^Asteroid) -> f32
     return asteroid.y - asteroid.radius
 }
 
+get_asteroid_bounds_bottom :: proc(asteroid: ^Asteroid) -> f32
+{
+    return asteroid.y + asteroid.radius
+}
+
 generate_rand_x :: proc() -> f32
 {
     return rand.float32_range(config.ASTEROID_X, config.BORDER_RIGHT - config.ASTEROID_RADIUS)
+}
+
+generate_rand_y :: proc() -> f32
+{
+    return rand.float32_range(config.HORDE_VERTICAL_LEN, config.ASTEROID_Y)
 }

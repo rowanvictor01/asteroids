@@ -49,7 +49,13 @@ bullets_draw :: proc(bullets: []Bullet)
 }
 
 
-// Helper Proc
+
+
+
+/*
+   HELPER PROCEDURES
+*/
+
 get_bullet_bounds_left :: proc(bullet: Bullet) -> f32
 {
     return bullet.x - bullet.radius

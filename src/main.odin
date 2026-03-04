@@ -14,10 +14,10 @@ main :: proc()
     raylib.SetTargetFPS(60)
     
     // Create Player's Ship
-    ship := entities.ship_create(config.player_rect, config.PLAYER_VX, config.PLAYER_COLOR)
+    ship := entities.ship_create(config.player_rect, config.PLAYER_VX, config.PLAYER_VY, config.PLAYER_COLOR)
     
-    // Create Asteroid
-    asteroid := entities.asteroid_create(config.ASTEROID_X, config.ASTEROID_Y, config.ASTEROID_RADIUS, config.ASTEROID_COLOR, config.ASTEROID_SPEED)
+    // Create Asteroids Horde
+    horde := entities.horde_create()
 
     // Game Loop
     for !raylib.WindowShouldClose()
@@ -25,12 +25,12 @@ main :: proc()
 	    // Update
 	    entities.ship_update(&ship)
 	    entities.bullets_update(ship.bullets[:])
-        entities.asteroid_update(&asteroid)
+        entities.asteroids_update(horde[:])
         
         // Collision Detection
         collisions.collision_bullets_borders(ship.bullets[:])
         collisions.collision_ship_borders(&ship)
-        collisions.collision_asteroid_borders(&asteroid)
+        collisions.collision_asteroids_borders(horde[:])
 
 	    // Render
 	    raylib.BeginDrawing()
@@ -38,7 +38,7 @@ main :: proc()
 	
 	    entities.ship_draw(&ship)
 	    entities.bullets_draw(ship.bullets[:])
-        entities.asteroid_draw(&asteroid)
+        entities.asteroids_draw(horde[:])
 
 	    raylib.EndDrawing()
     }
