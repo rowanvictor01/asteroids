@@ -37,7 +37,7 @@ horde_create :: proc() -> [config.HORDE_SIZE]Asteroid
 
     for i in 0 ..< config.HORDE_SIZE
     {
-        horde[i] = asteroid_create(generate_rand_x(), generate_rand_y(), config.ASTEROID_RADIUS, config.ASTEROID_COLOR, config.ASTEROID_SPEED)
+        //horde[i] = asteroid_create(generate_rand_x(), generate_rand_y(), config.ASTEROID_RADIUS, config.ASTEROID_COLOR, config.ASTEROID_SPEED)
     }
     
     return horde
@@ -76,6 +76,7 @@ get_asteroid_bounds_bottom :: proc(asteroid: ^Asteroid) -> f32
     return asteroid.y + asteroid.radius
 }
 
+/*
 generate_rand_x :: proc() -> f32
 {
     return rand.float32_range(config.ASTEROID_X, config.BORDER_RIGHT - config.ASTEROID_RADIUS)
@@ -85,3 +86,4 @@ generate_rand_y :: proc() -> f32
 {
     return rand.float32_range(config.HORDE_VERTICAL_LEN, config.ASTEROID_Y)
 }
+*/
